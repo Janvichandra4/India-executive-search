@@ -1,8 +1,12 @@
 import { useRef, useEffect, useState } from 'react'
 import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
 
-const reveal = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0 } }
-const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.2 } } }
+const EASE = [0.16, 1, 0.3, 1]
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.14 } } }
+const fadeUp  = {
+  hidden: { opacity: 0, y: 36 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
+}
 
 const stats = [
   { to: 200, suffix: '+', label: 'Senior Placements'    },
@@ -17,20 +21,20 @@ const pillars = [
     body:  'Our principals have held senior roles within luxury hospitality. We understand what truly matters beyond the résumé.',
   },
   {
-    title: 'Executive-Level Placements',
-    body:  'From General Managers and CHROs to Group CEOs — we operate exclusively at the leadership tier, with full retention rigour.',
+    title: 'Leadership-Tier Specialisation',
+    body:  'From General Managers and CHROs to Group CEOs — we operate exclusively at leadership level, with full retention rigour.',
   },
   {
-    title: 'India & Global Reach',
+    title: 'India & Global Network',
     body:  'Headquartered in Gurgaon, with active mandates spanning South Asia, the Gulf, Southeast Asia, and Europe.',
   },
 ]
 
 function Counter({ to, suffix }) {
-  const ref = useRef(null)
+  const ref    = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.6 })
-  const mv = useMotionValue(0)
-  const spring = useSpring(mv, { stiffness: 55, damping: 18 })
+  const mv     = useMotionValue(0)
+  const spring = useSpring(mv, { stiffness: 50, damping: 16 })
   const [val, setVal] = useState(0)
 
   useEffect(() => { if (inView) mv.set(to) }, [inView, mv, to])
@@ -44,80 +48,109 @@ export default function AboutSection() {
     <section id="about" className="lx-section bg-surface">
       <div className="lx-container">
 
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-28 items-start mb-24">
+        {/* ── Editorial split ── */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-28">
 
-          {/* Left */}
+          {/* Left column */}
           <motion.div
-            variants={stagger} initial="hidden"
-            whileInView="show" viewport={{ once: true, amount: 0.2 }}
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
           >
-            <motion.span className="lx-label" variants={reveal} transition={{ duration: 0.8 }}>
-              About Us
-            </motion.span>
+            <motion.span className="lx-label" variants={fadeUp}>About Us</motion.span>
 
             <motion.h2
-              className="lx-heading text-4xl md:text-5xl mb-8"
-              variants={reveal} transition={{ duration: 0.8 }}
+              className="lx-heading mb-8"
+              style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.4rem)' }}
+              variants={fadeUp}
             >
-              Where Deep Expertise Meets Discreet Counsel
+              Where Deep Expertise<br />
+              Meets Discreet Counsel
             </motion.h2>
 
             <motion.div
-              className="gold-rule w-12 mb-8"
-              variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1 } }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="gold-rule w-12 mb-9"
+              variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.9, ease: EASE } } }}
               style={{ transformOrigin: 'left' }}
             />
 
-            <motion.p className="lx-body text-[15px] mb-6" variants={reveal} transition={{ duration: 0.8 }}>
-              India Executive Search was founded on a single conviction: that exceptional organisations are built by exceptional people. For over fifteen years, we have served as trusted talent advisors to the world's most distinguished hospitality brands.
+            <motion.p className="lx-body text-[14.5px] mb-6" variants={fadeUp}>
+              India Executive Search was founded on a single conviction: that exceptional organisations
+              are built by exceptional people. For over fifteen years, we have served as trusted talent
+              advisors to the world's most distinguished hospitality brands.
             </motion.p>
 
-            <motion.p className="lx-body text-[15px]" variants={reveal} transition={{ duration: 0.8 }}>
-              Rooted in India and operating across global luxury corridors — from the Maldives to the Middle East, Southeast Asia to Europe — we bring rigorous industry knowledge, an extensive network, and an unwavering commitment to precision in every assignment.
+            <motion.p className="lx-body text-[14.5px] mb-6" variants={fadeUp}>
+              Rooted in India and operating across global luxury corridors — from the Maldives to the
+              Middle East, Southeast Asia to Europe — we bring rigorous industry knowledge, an extensive
+              network, and an unwavering commitment to precision in every assignment.
+            </motion.p>
+
+            <motion.p
+              className="font-sans text-[13px] leading-relaxed"
+              style={{ color: 'rgba(198,167,105,0.7)', fontWeight: 300 }}
+              variants={fadeUp}
+            >
+              We work across luxury, upper upscale, upscale, boutique, independent, and emerging
+              hospitality brands.
             </motion.p>
           </motion.div>
 
-          {/* Right — pillars */}
+          {/* Right column — pillars */}
           <motion.div
-            className="space-y-8 lg:pt-16"
-            variants={stagger} initial="hidden"
-            whileInView="show" viewport={{ once: true, amount: 0.2 }}
+            className="space-y-0 lg:pt-20"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
           >
-            {pillars.map(({ title, body }) => (
+            {pillars.map(({ title, body }, i) => (
               <motion.div
                 key={title}
-                className="border-l border-white/10 pl-6 hover:border-gold/40 transition-colors duration-500"
-                variants={reveal}
-                transition={{ duration: 0.8 }}
+                className="group relative border-b border-white/[0.055] last:border-b-0 py-7 pl-6"
+                variants={fadeUp}
               >
-                <h3 className="font-serif text-pearl text-lg mb-2">{title}</h3>
-                <p className="lx-body text-sm">{body}</p>
+                {/* Animated left border */}
+                <span className="absolute left-0 top-0 bottom-0 w-px bg-white/[0.08] group-hover:bg-gold/40 transition-colors duration-500" />
+
+                {/* Small counter */}
+                <span
+                  className="absolute left-6 top-7 font-serif text-gold/18 select-none"
+                  style={{ fontSize: '2.5rem', lineHeight: 1, fontWeight: 300 }}
+                  aria-hidden="true"
+                >
+                  0{i + 1}
+                </span>
+
+                <div className="relative z-10 pl-10 pt-1">
+                  <h3 className="font-display text-pearl text-[1.05rem] mb-2.5 font-normal leading-snug group-hover:text-gold-light transition-colors duration-400">
+                    {title}
+                  </h3>
+                  <p className="lx-body text-[13.5px]">{body}</p>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
 
-        {/* Stats */}
+        {/* ── Stats bar ── */}
         <motion.div
-          className="border-t border-white/[0.06] pt-16 grid grid-cols-2 md:grid-cols-4 gap-10"
-          variants={stagger} initial="hidden"
-          whileInView="show" viewport={{ once: true, amount: 0.3 }}
+          className="border-t border-white/[0.055] pt-16 grid grid-cols-2 md:grid-cols-4 gap-10"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
         >
           {stats.map(({ to, suffix, label }) => (
-            <motion.div
-              key={label}
-              className="text-center"
-              variants={reveal}
-              transition={{ duration: 0.8 }}
-            >
+            <motion.div key={label} className="text-center group" variants={fadeUp}>
               <div
-                className="font-serif text-gold mb-2"
-                style={{ fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', letterSpacing: '-0.02em', lineHeight: 1 }}
+                className="font-serif text-gold mb-2 group-hover:text-gold-light transition-colors duration-400"
+                style={{ fontSize: 'clamp(2.2rem, 4vw, 3.4rem)', letterSpacing: '-0.02em', lineHeight: 1, fontWeight: 300 }}
               >
                 <Counter to={to} suffix={suffix} />
               </div>
-              <div className="text-dimmer text-[11px] font-sans uppercase tracking-label">{label}</div>
+              <div className="text-dimmer text-[10px] font-sans uppercase tracking-label">{label}</div>
             </motion.div>
           ))}
         </motion.div>

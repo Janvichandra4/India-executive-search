@@ -1,29 +1,41 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.2 } } }
-const reveal  = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0 } }
+const EASE = [0.16, 1, 0.3, 1]
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.14 } } }
+const fadeUp  = {
+  hidden: { opacity: 0, y: 32 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
+}
 
 const clientTestimonials = [
   {
-    quote: 'India Executive Search brought us a General Manager who didn\'t just fill a position — they transformed the DNA of our property. The quality of the shortlist, the depth of briefing, and the precision of fit was unlike anything we had experienced.',
+    quote: 'India Executive Search brought us a General Manager who didn\'t simply fill a position — they transformed the DNA of our property. The quality of the shortlist, the depth of briefing, and the precision of fit was unlike anything we had experienced.',
     name:  'Priya Sharma',
-    role:  'Owner, Boutique Luxury Retreats, Rajasthan',
+    role:  'Owner, Boutique Luxury Retreats',
+    org:   'Rajasthan, India',
+    initial: 'P',
   },
   {
-    quote: 'We have placed three senior leaders through IES across different properties over five years. Their understanding of luxury hospitality culture is exceptional. They do not send candidates — they send colleagues.',
+    quote: 'We have placed three senior leaders through IES across different properties over five years. Their understanding of hospitality culture is exceptional. They do not send candidates — they send colleagues.',
     name:  'Rahul Mehta',
-    role:  'Group CEO, Heritage Hotels Collection',
+    role:  'Group Chief Executive',
+    org:   'Heritage Hotels Collection',
+    initial: 'R',
   },
   {
     quote: 'Harish and his team operate with the discretion and professionalism essential at leadership level. The candidate placed as our VP of Operations exceeded every benchmark we set at the time of briefing.',
     name:  'Ananya Krishnan',
-    role:  'Regional Director — South Asia, International Luxury Hotels Group',
+    role:  'Regional Director — South Asia',
+    org:   'International Luxury Hotels Group',
+    initial: 'A',
   },
   {
     quote: 'What sets IES apart is their willingness to tell you when a candidate isn\'t right — even when it would be easier to close. That integrity is rare, and it is why we consider them a genuine advisory partner.',
     name:  'Vikram Singhania',
-    role:  'Managing Partner, Singhania Hospitality Ventures',
+    role:  'Managing Partner',
+    org:   'Singhania Hospitality Ventures',
+    initial: 'V',
   },
 ]
 
@@ -31,32 +43,30 @@ const candidateTestimonials = [
   {
     quote: 'I was not actively looking, but the conversation Harish initiated opened a door I hadn\'t considered. The preparation support, the transparency, and the follow-up after joining — this is what a truly professional search firm does.',
     name:  'Deepak Nair',
-    role:  'Vice President — Operations, Placed at a Leading Maldivian Resort Brand',
+    role:  'Vice President — Operations',
+    org:   'Leading Maldivian Resort Brand',
+    initial: 'D',
   },
   {
     quote: 'The briefing I received before my final interview was more thorough than anything I had prepared myself. IES clearly invests in the long-term success of their placements — not just the transaction.',
     name:  'Shalini Bose',
-    role:  'Director — Food & Beverage, Placed at a Five-Star Urban Hotel, Mumbai',
+    role:  'Director — Food & Beverage',
+    org:   'Five-Star Urban Hotel, Mumbai',
+    initial: 'S',
   },
   {
     quote: 'Three years on, I am still in the role IES placed me in — and thriving. That speaks to the quality of the match. This was not a numbers game; it was a considered, precise placement.',
     name:  'Arjun Kapoor',
-    role:  'General Manager, Placed at Heritage Mountain Property, Himachal Pradesh',
+    role:  'General Manager',
+    org:   'Heritage Mountain Property, Himachal Pradesh',
+    initial: 'A',
   },
 ]
 
-function QuoteMark() {
-  return (
-    <svg
-      width="48" height="36" viewBox="0 0 48 36" fill="none" aria-hidden="true"
-      className="mx-auto mb-8"
-    >
-      <path
-        d="M0 36V21.6C0 10.8 6 3.6 18 0l3 4.8C14.4 7.2 10.8 11.4 10.8 15.6H18V36H0zm28 0V21.6C28 10.8 34 3.6 46 0l2 4.8C41.4 7.2 38.8 11.4 38.8 15.6H46V36H28z"
-        fill="rgba(198,167,105,0.2)"
-      />
-    </svg>
-  )
+const slideVariants = {
+  enter:  (d) => ({ opacity: 0, x: d > 0 ? 40 : -40 }),
+  center: { opacity: 1, x: 0, transition: { duration: 0.55, ease: EASE } },
+  exit:   (d) => ({ opacity: 0, x: d > 0 ? -40 : 40, transition: { duration: 0.35, ease: EASE } }),
 }
 
 export default function TestimonialsSection() {
@@ -72,14 +82,7 @@ export default function TestimonialsSection() {
     setDir(d)
     setIndex(prev => d === 1
       ? (prev + 1) % list.length
-      : (prev - 1 + list.length) % list.length
-    )
-  }
-
-  const slideVariants = {
-    enter:  (d) => ({ opacity: 0, x: d > 0 ? 50 : -50 }),
-    center: { opacity: 1, x: 0 },
-    exit:   (d) => ({ opacity: 0, x: d > 0 ? -50 : 50 }),
+      : (prev - 1 + list.length) % list.length)
   }
 
   const t = list[index]
@@ -88,38 +91,48 @@ export default function TestimonialsSection() {
     <section id="testimonials" className="lx-section bg-surface overflow-hidden">
       <div className="lx-container">
 
-        {/* Header — centered */}
+        {/* Header */}
         <motion.div
-          className="text-center max-w-xl mx-auto mb-16"
-          variants={stagger} initial="hidden"
-          whileInView="show" viewport={{ once: true, amount: 0.3 }}
+          className="grid lg:grid-cols-2 gap-10 mb-16"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
         >
-          <motion.span className="lx-label" variants={reveal} transition={{ duration: 0.8 }}>
-            Testimonials
-          </motion.span>
-          <motion.h2
-            className="lx-heading text-4xl md:text-5xl mb-6"
-            variants={reveal} transition={{ duration: 0.8 }}
-          >
-            Voices That Matter
-          </motion.h2>
+          <div>
+            <motion.span className="lx-label" variants={fadeUp}>Testimonials</motion.span>
+            <motion.h2
+              className="lx-heading"
+              style={{ fontSize: 'clamp(2rem, 3.6vw, 3.2rem)' }}
+              variants={fadeUp}
+            >
+              Voices That Define<br />
+              Our Practice
+            </motion.h2>
+          </div>
+          <motion.p className="lx-body text-[14.5px] lg:self-end" variants={fadeUp}>
+            What distinguishes us is not what we say about ourselves — but what our clients and
+            candidates say after years of engagement.
+          </motion.p>
         </motion.div>
 
-        {/* Category toggle — centered */}
+        {/* Category toggle */}
         <motion.div
-          className="flex justify-center mb-16"
-          initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.8 }}
+          className="flex mb-14"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: EASE }}
         >
-          <div className="flex gap-px bg-surface-card border border-white/[0.06] p-1">
+          <div className="flex gap-px bg-white/[0.05] border border-white/[0.06] p-1">
             {[
-              { key: 'clients',    label: 'Clients'    },
-              { key: 'candidates', label: 'Candidates' },
+              { key: 'clients',    label: 'From Clients'    },
+              { key: 'candidates', label: 'From Candidates' },
             ].map(({ key, label }) => (
               <button
                 key={key}
                 onClick={() => switchCat(key)}
-                className={`px-7 py-2.5 text-[10px] font-sans uppercase tracking-label transition-all duration-300 ${
+                className={`px-7 py-2.5 text-[9.5px] font-sans uppercase tracking-label transition-all duration-350 outline-none ${
                   category === key
                     ? 'bg-gold text-surface-deep font-medium'
                     : 'text-dim hover:text-pearl'
@@ -131,9 +144,11 @@ export default function TestimonialsSection() {
           </div>
         </motion.div>
 
-        {/* Carousel — centered */}
-        <div className="max-w-3xl mx-auto">
-          <div className="relative min-h-[320px] flex items-center">
+        {/* Testimonial display */}
+        <div className="grid lg:grid-cols-[1fr_340px] gap-12 lg:gap-16 items-center">
+
+          {/* Main quote */}
+          <div className="relative min-h-[260px] flex items-start">
             <AnimatePresence custom={dir} mode="wait">
               <motion.div
                 key={`${category}-${index}`}
@@ -142,81 +157,97 @@ export default function TestimonialsSection() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 className="w-full"
               >
-                <motion.div
-                  className="lx-card text-center"
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                {/* Large decorative quote mark */}
+                <div className="mb-8" aria-hidden="true">
+                  <svg width="42" height="32" viewBox="0 0 42 32" fill="none">
+                    <path
+                      d="M0 32V18.4C0 9.2 5.6 3.2 16.8 0l2.8 4.8C13.2 7.2 9.6 11.2 9.6 14.8H16V32H0zm24 0V18.4C24 9.2 29.6 3.2 40.8 0l0.8 4.8C35.2 7.2 32 11.2 32 14.8H38.4V32H24z"
+                      fill="rgba(198,167,105,0.22)"
+                    />
+                  </svg>
+                </div>
+
+                <blockquote
+                  className="font-serif text-pearl/80 font-normal italic leading-relaxed mb-10"
+                  style={{ fontSize: 'clamp(1.05rem, 1.9vw, 1.3rem)', lineHeight: 1.7, fontWeight: 300 }}
                 >
-                  <QuoteMark />
+                  "{t.quote}"
+                </blockquote>
 
-                  <blockquote
-                    className="font-serif text-pearl font-normal italic leading-relaxed mb-10 text-center"
-                    style={{ fontSize: 'clamp(1rem, 1.8vw, 1.2rem)', lineHeight: '1.75' }}
+                {/* Author */}
+                <div className="flex items-center gap-4">
+                  <div
+                    className="w-11 h-11 rounded-full border border-gold/25 bg-surface-card flex items-center justify-center flex-shrink-0"
+                    aria-hidden="true"
                   >
-                    "{t.quote}"
-                  </blockquote>
-
-                  {/* Author */}
-                  <div className="flex flex-col items-center gap-1">
-                    <div className="w-10 h-10 rounded-full border border-gold/30 bg-surface flex items-center justify-center mb-2">
-                      <span className="font-serif text-gold text-sm">{t.name[0]}</span>
-                    </div>
-                    <p className="font-sans text-pearl text-sm font-medium">{t.name}</p>
-                    <p className="lx-body text-xs text-center max-w-sm">{t.role}</p>
+                    <span className="font-serif text-gold text-sm">{t.initial}</span>
                   </div>
-                </motion.div>
+                  <div>
+                    <p className="font-sans text-pearl text-sm font-medium mb-0.5">{t.name}</p>
+                    <p className="lx-body text-[12px] mb-0">{t.role}</p>
+                    <p className="font-sans text-[11px] text-gold/55">{t.org}</p>
+                  </div>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Navigation — centered */}
-          <div className="flex items-center justify-center gap-6 mt-10">
-            {/* Prev */}
-            <motion.button
-              onClick={() => go(-1)}
-              className="w-10 h-10 border border-white/10 flex items-center justify-center text-dim hover:border-gold/50 hover:text-gold transition-all duration-300"
-              whileHover={{ y: -2 }}
-              aria-label="Previous"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M9 2L4 7l5 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </motion.button>
+          {/* Navigation sidebar */}
+          <div className="flex flex-row lg:flex-col justify-between lg:justify-center gap-6 lg:gap-10 border-t lg:border-t-0 lg:border-l border-white/[0.055] pt-8 lg:pt-0 lg:pl-12">
+
+            {/* Counter */}
+            <div className="flex flex-col justify-center">
+              <p className="font-serif text-gold" style={{ fontSize: '2.4rem', fontWeight: 300, lineHeight: 1 }}>
+                {String(index + 1).padStart(2, '0')}
+              </p>
+              <p className="text-dimmer text-[10px] font-sans uppercase tracking-label mt-1">
+                / {String(list.length).padStart(2, '0')}
+              </p>
+            </div>
 
             {/* Dots */}
-            <div className="flex gap-2 items-center">
+            <div className="flex lg:flex-col gap-2 items-center justify-center">
               {list.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => { setDir(i > index ? 1 : -1); setIndex(i) }}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === index ? 'w-5 h-1.5 bg-gold' : 'w-1.5 h-1.5 bg-white/15'
+                  className={`rounded-full transition-all duration-400 ${
+                    i === index
+                      ? 'bg-gold w-5 h-1.5 lg:w-1.5 lg:h-5'
+                      : 'bg-white/15 hover:bg-white/30 w-1.5 h-1.5'
                   }`}
                   aria-label={`Testimonial ${i + 1}`}
                 />
               ))}
             </div>
 
-            {/* Next */}
-            <motion.button
-              onClick={() => go(1)}
-              className="w-10 h-10 border border-white/10 flex items-center justify-center text-dim hover:border-gold/50 hover:text-gold transition-all duration-300"
-              whileHover={{ y: -2 }}
-              aria-label="Next"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M5 2l5 5-5 5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </motion.button>
-          </div>
+            {/* Prev / Next */}
+            <div className="flex lg:flex-col gap-3">
+              <motion.button
+                onClick={() => go(-1)}
+                className="w-10 h-10 border border-white/10 flex items-center justify-center text-dim hover:border-gold/50 hover:text-gold transition-all duration-300"
+                whileHover={{ y: -2 }}
+                aria-label="Previous testimonial"
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M8 2L4 6l4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </motion.button>
+              <motion.button
+                onClick={() => go(1)}
+                className="w-10 h-10 border border-white/10 flex items-center justify-center text-dim hover:border-gold/50 hover:text-gold transition-all duration-300"
+                whileHover={{ y: -2 }}
+                aria-label="Next testimonial"
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M4 2l4 4-4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </motion.button>
+            </div>
 
-          {/* Counter */}
-          <p className="text-center text-dimmer text-[10px] font-sans uppercase tracking-label mt-5">
-            {String(index + 1).padStart(2, '0')} / {String(list.length).padStart(2, '0')}
-          </p>
+          </div>
         </div>
 
       </div>

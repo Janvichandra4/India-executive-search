@@ -1,113 +1,178 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 
-const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.15 } } }
-const reveal  = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0 } }
+const EASE = [0.16, 1, 0.3, 1]
+const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }
+const fadeUp  = {
+  hidden: { opacity: 0, y: 32 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.85, ease: EASE } },
+}
 
 const services = [
   {
     n: '01',
-    Icon: SearchIcon,
-    title: 'Executive Search',
-    body:  'Bespoke retained search for C-suite and senior leadership mandates. Every assignment is approached with full rigour and absolute discretion.',
+    title: 'Executive Search & Advisory',
+    body:  'Bespoke retained search for C-suite and senior leadership mandates. Every assignment is conducted with full rigour, absolute discretion, and a long-term strategic perspective.',
+    tags:  ['C-Suite', 'Retained', 'Confidential'],
   },
   {
     n: '02',
-    Icon: PeopleIcon,
-    title: 'Leadership Hiring',
-    body:  'Strategic acquisition of General Managers, department heads, and functional leaders who define brand culture and operational excellence.',
+    title: 'Hotel Operations Leadership',
+    body:  'Targeted search for General Managers, Resident Managers, F&B Leaders, Rooms Division heads, and operational leadership across property types and brand scales.',
+    tags:  ['General Managers', 'Operations', 'F&B'],
   },
   {
     n: '03',
-    Icon: AdvisoryIcon,
-    title: 'Talent Advisory',
-    body:  'Confidential counsel to boards and owners on succession planning, organisational design, and the luxury talent landscape.',
+    title: 'Commercial & Revenue Leadership',
+    body:  'Leadership mandates spanning sales, marketing, revenue management, and business development — for single properties and multi-market portfolios.',
+    tags:  ['Sales', 'Revenue', 'Marketing'],
   },
   {
     n: '04',
-    Icon: ChartIcon,
-    title: 'Market Intelligence',
-    body:  'Compensation benchmarking, talent mapping, and competitive intelligence to support informed, strategic people decisions.',
+    title: 'Pre-Opening & Expansion Hiring',
+    body:  'End-to-end leadership staffing support for hotel launches, brand transitions, and portfolio expansion projects — precision-timed to your opening milestones.',
+    tags:  ['Pre-Opening', 'Brand Transitions', 'Expansion'],
   },
   {
     n: '05',
-    Icon: DigitalIcon,
-    title: 'Digital & AI Transformation',
-    body:  'Placing technology leaders who guide hospitality brands through digital transformation without compromising the guest experience.',
+    title: 'Talent Advisory & Succession',
+    body:  'Confidential counsel to boards, owners, and group CEOs on succession strategy, organisational design, and the hospitality talent landscape.',
+    tags:  ['Boards', 'Succession', 'Advisory'],
+  },
+  {
+    n: '06',
+    title: 'Market Intelligence & Benchmarking',
+    body:  'Compensation benchmarking, talent mapping, and competitive intelligence to inform high-stakes leadership decisions with accuracy and confidence.',
+    tags:  ['Benchmarking', 'Talent Mapping', 'Intelligence'],
+  },
+  {
+    n: '07',
+    title: 'Digital & Technology Leadership',
+    body:  'Placing technology and digital leaders who guide hospitality brands through transformation — from revenue-tech to AI adoption — without compromising the guest experience.',
+    tags:  ['Technology', 'Digital', 'AI'],
   },
 ]
 
 export default function ServicesSection() {
+  const [expanded, setExpanded] = useState(null)
+
   return (
-    <section id="services" className="lx-section bg-surface-deep">
+    <section id="services" className="lx-section bg-surface overflow-hidden">
       <div className="lx-container">
 
         {/* Header */}
         <motion.div
-          className="max-w-2xl mb-20"
-          variants={stagger} initial="hidden"
-          whileInView="show" viewport={{ once: true, amount: 0.3 }}
+          className="grid lg:grid-cols-2 gap-10 mb-20"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.25 }}
         >
-          <motion.span className="lx-label" variants={reveal} transition={{ duration: 0.8 }}>
-            Core Services
-          </motion.span>
-          <motion.h2
-            className="lx-heading text-4xl md:text-5xl mb-6"
-            variants={reveal} transition={{ duration: 0.8 }}
-          >
-            Tailored for Luxury Hospitality Recruitment
-          </motion.h2>
-          <motion.p className="lx-body" variants={reveal} transition={{ duration: 0.8 }}>
-            No volume mandates. Every engagement is approached with the rigour and care we would apply to our own careers.
+          <div>
+            <motion.span className="lx-label" variants={fadeUp}>Core Services</motion.span>
+            <motion.h2
+              className="lx-heading"
+              style={{ fontSize: 'clamp(2rem, 3.6vw, 3.2rem)' }}
+              variants={fadeUp}
+            >
+              A Practice Built for<br />
+              Hospitality Leadership
+            </motion.h2>
+          </div>
+          <motion.p className="lx-body text-[14.5px] lg:self-end lg:pt-2" variants={fadeUp}>
+            No volume mandates. Every engagement is executed with discretion, rigour, and long-term
+            strategic focus — from initial briefing through to successful onboarding.
           </motion.p>
         </motion.div>
 
-        {/* Cards */}
+        {/* Accordion service list */}
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-5"
-          variants={stagger} initial="hidden"
-          whileInView="show" viewport={{ once: true, amount: 0.1 }}
+          className="border-t border-white/[0.055]"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
         >
-          {services.map(({ n, Icon, title, body }) => (
+          {services.map(({ n, title, body, tags }) => (
             <motion.div
               key={n}
-              className="lx-card group cursor-default relative overflow-hidden"
-              variants={reveal}
-              transition={{ duration: 0.8 }}
-              whileHover={{ scale: 1.03, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
+              className="border-b border-white/[0.055]"
+              variants={fadeUp}
             >
-              {/* Top gold reveal line */}
-              <span className="absolute top-0 left-0 w-0 h-[1px] bg-gold transition-all duration-500 group-hover:w-full" />
-
-              {/* Number */}
-              <div
-                className="font-serif text-gold/20 group-hover:text-gold/35 transition-colors duration-300 mb-5 leading-none select-none"
-                style={{ fontSize: '2.5rem', letterSpacing: '-0.02em' }}
-                aria-hidden="true"
+              <button
+                className="w-full flex items-center justify-between py-7 group text-left outline-none"
+                onClick={() => setExpanded(expanded === n ? null : n)}
+                aria-expanded={expanded === n}
               >
-                {n}
-              </div>
+                <div className="flex items-center gap-6 md:gap-10">
+                  {/* Number */}
+                  <span
+                    className="font-serif flex-shrink-0 transition-colors duration-400"
+                    style={{
+                      fontSize: '0.95rem',
+                      color: expanded === n ? 'rgba(198,167,105,0.9)' : 'rgba(198,167,105,0.28)',
+                      letterSpacing: '0.06em',
+                      fontWeight: 300,
+                    }}
+                    aria-hidden="true"
+                  >
+                    {n}
+                  </span>
+                  {/* Title */}
+                  <span
+                    className={`font-serif transition-colors duration-400 ${
+                      expanded === n ? 'text-gold-light' : 'text-pearl group-hover:text-pearl/80'
+                    }`}
+                    style={{ fontSize: 'clamp(1.05rem, 2vw, 1.3rem)', fontWeight: 400, letterSpacing: '-0.01em' }}
+                  >
+                    {title}
+                  </span>
+                </div>
 
-              {/* Icon */}
-              <div className="w-9 h-9 text-gold/60 group-hover:text-gold transition-colors duration-300 mb-6">
-                <Icon />
-              </div>
+                {/* Expand icon */}
+                <motion.span
+                  className="flex-shrink-0 ml-4 text-gold/50 group-hover:text-gold transition-colors duration-300"
+                  animate={{ rotate: expanded === n ? 45 : 0 }}
+                  transition={{ duration: 0.3, ease: EASE }}
+                >
+                  <PlusIcon />
+                </motion.span>
+              </button>
 
-              {/* Title */}
-              <h3 className="font-serif text-pearl text-xl mb-4 group-hover:text-gold-light transition-colors duration-300">
-                {title}
-              </h3>
-
-              {/* Body */}
-              <p className="lx-body text-sm leading-relaxed">{body}</p>
-
-              {/* Arrow */}
-              <div className="flex items-center gap-2 mt-8 text-dimmer group-hover:text-gold text-[10px] uppercase tracking-label transition-colors duration-300">
-                <span>Enquire</span>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
-                  className="transition-transform duration-300 group-hover:translate-x-1">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
+              <AnimatePresence initial={false}>
+                {expanded === n && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.45, ease: EASE }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pb-8 pl-[calc(1.7rem+1.5rem)] md:pl-[calc(2.5rem+2.5rem)]">
+                      <p className="lx-body text-[14px] mb-5 max-w-2xl">{body}</p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {tags.map(tag => (
+                          <span
+                            key={tag}
+                            className="text-[9px] font-sans uppercase tracking-label text-dimmer border border-white/[0.08] px-3 py-1.5"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <a
+                        href="#contact"
+                        className="inline-flex items-center gap-2 text-gold text-[10px] font-sans uppercase tracking-label hover:text-gold-light transition-colors duration-300 group"
+                      >
+                        <span>Enquire about this service</span>
+                        <motion.span className="inline-block" whileHover={{ x: 3 }} transition={{ duration: 0.2 }}>
+                          <ArrowSmIcon />
+                        </motion.span>
+                      </a>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           ))}
         </motion.div>
@@ -117,47 +182,18 @@ export default function ServicesSection() {
   )
 }
 
-/* ── Icons ── */
-function SearchIcon() {
+function PlusIcon() {
   return (
-    <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="16" cy="16" r="10" />
-      <path d="M24 24l7 7" />
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
     </svg>
   )
 }
-function PeopleIcon() {
+
+function ArrowSmIcon() {
   return (
-    <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="14" cy="11" r="5" />
-      <path d="M4 32c0-5.52 4.48-10 10-10s10 4.48 10 10" />
-      <circle cx="26" cy="11" r="4" opacity="0.5" />
-      <path d="M30 32c0-4.5-2.5-8-6-9.5" opacity="0.5" />
-    </svg>
-  )
-}
-function AdvisoryIcon() {
-  return (
-    <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-      <polygon points="18,3 22,13 33,13 24.5,19.5 27.5,30 18,23.5 8.5,30 11.5,19.5 3,13 14,13" />
-    </svg>
-  )
-}
-function ChartIcon() {
-  return (
-    <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="3" width="30" height="30" rx="2" />
-      <polyline points="8,26 14,18 19,22 26,12 30,16" />
-    </svg>
-  )
-}
-function DigitalIcon() {
-  return (
-    <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="4" y="8" width="28" height="20" rx="2" />
-      <path d="M13 8V5M23 8V5M4 16h28" />
-      <circle cx="18" cy="23" r="3" />
-      <path d="M18 20v-3" />
+    <svg width="11" height="11" viewBox="0 0 11 11" fill="none" aria-hidden="true">
+      <path d="M2 5.5h7M6 2.5l3.5 3-3.5 3" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
