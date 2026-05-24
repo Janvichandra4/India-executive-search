@@ -10,55 +10,55 @@ const fadeUp  = {
 
 const clientTestimonials = [
   {
-    quote: 'India Executive Search brought us a General Manager who didn\'t simply fill a position — they transformed the DNA of our property. The quality of the shortlist, the depth of briefing, and the precision of fit was unlike anything we had experienced.',
-    name:  'Priya Sharma',
-    role:  'Owner, Boutique Luxury Retreats',
-    org:   'Rajasthan, India',
+    quote:   'India Executive Search brought us a General Manager who didn\'t simply fill a position — they transformed the DNA of our property. The quality of the shortlist, the depth of briefing, and the precision of fit was unlike anything we had experienced.',
+    name:    'Priya Sharma',
+    role:    'Owner, Boutique Luxury Retreats',
+    org:     'Rajasthan, India',
     initial: 'P',
   },
   {
-    quote: 'We have placed three senior leaders through IES across different properties over five years. Their understanding of hospitality culture is exceptional. They do not send candidates — they send colleagues.',
-    name:  'Rahul Mehta',
-    role:  'Group Chief Executive',
-    org:   'Heritage Hotels Collection',
+    quote:   'We have placed three senior leaders through IES across different properties over five years. Their understanding of hospitality culture is exceptional. They do not send candidates — they send colleagues.',
+    name:    'Rahul Mehta',
+    role:    'Group Chief Executive',
+    org:     'Heritage Hotels Collection',
     initial: 'R',
   },
   {
-    quote: 'Harish and his team operate with the discretion and professionalism essential at leadership level. The candidate placed as our VP of Operations exceeded every benchmark we set at the time of briefing.',
-    name:  'Ananya Krishnan',
-    role:  'Regional Director — South Asia',
-    org:   'International Luxury Hotels Group',
+    quote:   'Harish and his team operate with the discretion and professionalism essential at leadership level. The candidate placed as our VP of Operations exceeded every benchmark we set at the time of briefing.',
+    name:    'Ananya Krishnan',
+    role:    'Regional Director — South Asia',
+    org:     'International Luxury Hotels Group',
     initial: 'A',
   },
   {
-    quote: 'What sets IES apart is their willingness to tell you when a candidate isn\'t right — even when it would be easier to close. That integrity is rare, and it is why we consider them a genuine advisory partner.',
-    name:  'Vikram Singhania',
-    role:  'Managing Partner',
-    org:   'Singhania Hospitality Ventures',
+    quote:   'What sets IES apart is their willingness to tell you when a candidate isn\'t right — even when it would be easier to close. That integrity is rare, and it is why we consider them a genuine advisory partner.',
+    name:    'Vikram Singhania',
+    role:    'Managing Partner',
+    org:     'Singhania Hospitality Ventures',
     initial: 'V',
   },
 ]
 
 const candidateTestimonials = [
   {
-    quote: 'I was not actively looking, but the conversation Harish initiated opened a door I hadn\'t considered. The preparation support, the transparency, and the follow-up after joining — this is what a truly professional search firm does.',
-    name:  'Deepak Nair',
-    role:  'Vice President — Operations',
-    org:   'Leading Maldivian Resort Brand',
+    quote:   'I was not actively looking, but the conversation Harish initiated opened a door I hadn\'t considered. The preparation support, the transparency, and the follow-up after joining — this is what a truly professional search firm does.',
+    name:    'Deepak Nair',
+    role:    'Vice President — Operations',
+    org:     'Leading Maldivian Resort Brand',
     initial: 'D',
   },
   {
-    quote: 'The briefing I received before my final interview was more thorough than anything I had prepared myself. IES clearly invests in the long-term success of their placements — not just the transaction.',
-    name:  'Shalini Bose',
-    role:  'Director — Food & Beverage',
-    org:   'Five-Star Urban Hotel, Mumbai',
+    quote:   'The briefing I received before my final interview was more thorough than anything I had prepared myself. IES clearly invests in the long-term success of their placements — not just the transaction.',
+    name:    'Shalini Bose',
+    role:    'Director — Food & Beverage',
+    org:     'Five-Star Urban Hotel, Mumbai',
     initial: 'S',
   },
   {
-    quote: 'Three years on, I am still in the role IES placed me in — and thriving. That speaks to the quality of the match. This was not a numbers game; it was a considered, precise placement.',
-    name:  'Arjun Kapoor',
-    role:  'General Manager',
-    org:   'Heritage Mountain Property, Himachal Pradesh',
+    quote:   'Three years on, I am still in the role IES placed me in — and thriving. That speaks to the quality of the match. This was not a numbers game; it was a considered, precise placement.',
+    name:    'Arjun Kapoor',
+    role:    'General Manager',
+    org:     'Heritage Mountain Property, Himachal Pradesh',
     initial: 'A',
   },
 ]
@@ -77,7 +77,6 @@ export default function TestimonialsSection() {
   const list = category === 'clients' ? clientTestimonials : candidateTestimonials
 
   const switchCat = (cat) => { setCategory(cat); setIndex(0); setDir(1) }
-
   const go = (d) => {
     setDir(d)
     setIndex(prev => d === 1
@@ -88,7 +87,7 @@ export default function TestimonialsSection() {
   const t = list[index]
 
   return (
-    <section id="testimonials" className="lx-section bg-surface overflow-hidden">
+    <section id="testimonials" className="lx-section bg-surface-deep overflow-hidden">
       <div className="lx-container">
 
         {/* Header */}
@@ -103,20 +102,21 @@ export default function TestimonialsSection() {
             <motion.span className="lx-label" variants={fadeUp}>Testimonials</motion.span>
             <motion.h2
               className="lx-heading"
-              style={{ fontSize: 'clamp(2rem, 3.6vw, 3.2rem)' }}
+              style={{ fontSize: 'clamp(2.2rem, 4.2vw, 3.8rem)' }}
               variants={fadeUp}
             >
-              Voices That Define<br />
+              Voices That Define
+              <br />
               Our Practice
             </motion.h2>
           </div>
-          <motion.p className="lx-body text-[14.5px] lg:self-end" variants={fadeUp}>
+          <motion.p className="lx-body text-[16px] lg:self-end" variants={fadeUp}>
             What distinguishes us is not what we say about ourselves — but what our clients and
             candidates say after years of engagement.
           </motion.p>
         </motion.div>
 
-        {/* Category toggle */}
+        {/* Toggle */}
         <motion.div
           className="flex mb-14"
           initial={{ opacity: 0, y: 24 }}
@@ -132,11 +132,12 @@ export default function TestimonialsSection() {
               <button
                 key={key}
                 onClick={() => switchCat(key)}
-                className={`px-7 py-2.5 text-[9.5px] font-sans uppercase tracking-label transition-all duration-350 outline-none ${
+                className={`px-7 py-2.5 font-sans uppercase tracking-label transition-all duration-350 outline-none ${
                   category === key
-                    ? 'bg-gold text-surface-deep font-medium'
+                    ? 'bg-gold text-surface-deep font-semibold'
                     : 'text-dim hover:text-pearl'
                 }`}
+                style={{ fontSize: '10.5px', letterSpacing: '0.18em' }}
               >
                 {label}
               </button>
@@ -148,7 +149,7 @@ export default function TestimonialsSection() {
         <div className="grid lg:grid-cols-[1fr_340px] gap-12 lg:gap-16 items-center">
 
           {/* Main quote */}
-          <div className="relative min-h-[260px] flex items-start">
+          <div className="relative min-h-[280px] flex items-start">
             <AnimatePresence custom={dir} mode="wait">
               <motion.div
                 key={`${category}-${index}`}
@@ -159,35 +160,33 @@ export default function TestimonialsSection() {
                 exit="exit"
                 className="w-full"
               >
-                {/* Large decorative quote mark */}
                 <div className="mb-8" aria-hidden="true">
-                  <svg width="42" height="32" viewBox="0 0 42 32" fill="none">
+                  <svg width="44" height="34" viewBox="0 0 44 34" fill="none">
                     <path
-                      d="M0 32V18.4C0 9.2 5.6 3.2 16.8 0l2.8 4.8C13.2 7.2 9.6 11.2 9.6 14.8H16V32H0zm24 0V18.4C24 9.2 29.6 3.2 40.8 0l0.8 4.8C35.2 7.2 32 11.2 32 14.8H38.4V32H24z"
-                      fill="rgba(198,167,105,0.22)"
+                      d="M0 34V19.6C0 9.8 5.95 3.4 17.85 0l3 5.1C14.1 7.65 10.2 11.9 10.2 15.75H17V34H0zm25 0V19.6C25 9.8 30.95 3.4 42.85 0l0.85 5.1C37.1 7.65 34 11.9 34 15.75H40.8V34H25z"
+                      fill="rgba(198,167,105,0.24)"
                     />
                   </svg>
                 </div>
 
                 <blockquote
                   className="font-serif text-pearl/80 font-normal italic leading-relaxed mb-10"
-                  style={{ fontSize: 'clamp(1.05rem, 1.9vw, 1.3rem)', lineHeight: 1.7, fontWeight: 300 }}
+                  style={{ fontSize: 'clamp(1.08rem, 2vw, 1.35rem)', lineHeight: 1.72, fontWeight: 300 }}
                 >
                   "{t.quote}"
                 </blockquote>
 
-                {/* Author */}
                 <div className="flex items-center gap-4">
                   <div
-                    className="w-11 h-11 rounded-full border border-gold/25 bg-surface-card flex items-center justify-center flex-shrink-0"
+                    className="w-12 h-12 rounded-full border border-gold/25 bg-surface-card flex items-center justify-center flex-shrink-0"
                     aria-hidden="true"
                   >
-                    <span className="font-serif text-gold text-sm">{t.initial}</span>
+                    <span className="font-serif text-gold" style={{ fontSize: '1rem' }}>{t.initial}</span>
                   </div>
                   <div>
-                    <p className="font-sans text-pearl text-sm font-medium mb-0.5">{t.name}</p>
-                    <p className="lx-body text-[12px] mb-0">{t.role}</p>
-                    <p className="font-sans text-[11px] text-gold/55">{t.org}</p>
+                    <p className="font-sans text-pearl font-medium mb-0.5" style={{ fontSize: '14.5px' }}>{t.name}</p>
+                    <p className="lx-body mb-0" style={{ fontSize: '13px' }}>{t.role}</p>
+                    <p className="font-sans text-gold/55" style={{ fontSize: '12px' }}>{t.org}</p>
                   </div>
                 </div>
               </motion.div>
@@ -197,17 +196,15 @@ export default function TestimonialsSection() {
           {/* Navigation sidebar */}
           <div className="flex flex-row lg:flex-col justify-between lg:justify-center gap-6 lg:gap-10 border-t lg:border-t-0 lg:border-l border-white/[0.055] pt-8 lg:pt-0 lg:pl-12">
 
-            {/* Counter */}
             <div className="flex flex-col justify-center">
-              <p className="font-serif text-gold" style={{ fontSize: '2.4rem', fontWeight: 300, lineHeight: 1 }}>
+              <p className="font-serif text-gold" style={{ fontSize: '2.6rem', fontWeight: 300, lineHeight: 1 }}>
                 {String(index + 1).padStart(2, '0')}
               </p>
-              <p className="text-dimmer text-[10px] font-sans uppercase tracking-label mt-1">
+              <p className="text-dimmer font-sans uppercase mt-1" style={{ fontSize: '10.5px', letterSpacing: '0.18em' }}>
                 / {String(list.length).padStart(2, '0')}
               </p>
             </div>
 
-            {/* Dots */}
             <div className="flex lg:flex-col gap-2 items-center justify-center">
               {list.map((_, i) => (
                 <button
@@ -223,11 +220,10 @@ export default function TestimonialsSection() {
               ))}
             </div>
 
-            {/* Prev / Next */}
             <div className="flex lg:flex-col gap-3">
               <motion.button
                 onClick={() => go(-1)}
-                className="w-10 h-10 border border-white/10 flex items-center justify-center text-dim hover:border-gold/50 hover:text-gold transition-all duration-300"
+                className="w-10 h-10 border border-white/10 flex items-center justify-center text-dim hover:border-gold/50 hover:text-gold transition-all duration-300 outline-none"
                 whileHover={{ y: -2 }}
                 aria-label="Previous testimonial"
               >
@@ -237,7 +233,7 @@ export default function TestimonialsSection() {
               </motion.button>
               <motion.button
                 onClick={() => go(1)}
-                className="w-10 h-10 border border-white/10 flex items-center justify-center text-dim hover:border-gold/50 hover:text-gold transition-all duration-300"
+                className="w-10 h-10 border border-white/10 flex items-center justify-center text-dim hover:border-gold/50 hover:text-gold transition-all duration-300 outline-none"
                 whileHover={{ y: -2 }}
                 aria-label="Next testimonial"
               >

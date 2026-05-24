@@ -48,7 +48,7 @@ export default function AboutSection() {
     <section id="about" className="lx-section bg-surface">
       <div className="lx-container">
 
-        {/* ── Editorial split ── */}
+        {/* Editorial split */}
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-28">
 
           {/* Left column */}
@@ -62,7 +62,7 @@ export default function AboutSection() {
 
             <motion.h2
               className="lx-heading mb-8"
-              style={{ fontSize: 'clamp(2.1rem, 3.8vw, 3.4rem)' }}
+              style={{ fontSize: 'clamp(2.2rem, 4.2vw, 3.8rem)' }}
               variants={fadeUp}
             >
               Where Deep Expertise<br />
@@ -70,26 +70,26 @@ export default function AboutSection() {
             </motion.h2>
 
             <motion.div
-              className="gold-rule w-12 mb-9"
-              variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.9, ease: EASE } } }}
+              className="gold-rule w-14 mb-9"
               style={{ transformOrigin: 'left' }}
+              variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.9, ease: EASE } } }}
             />
 
-            <motion.p className="lx-body text-[14.5px] mb-6" variants={fadeUp}>
+            <motion.p className="lx-body text-[16px] mb-6" variants={fadeUp}>
               India Executive Search was founded on a single conviction: that exceptional organisations
               are built by exceptional people. For over fifteen years, we have served as trusted talent
               advisors to the world's most distinguished hospitality brands.
             </motion.p>
 
-            <motion.p className="lx-body text-[14.5px] mb-6" variants={fadeUp}>
+            <motion.p className="lx-body text-[16px] mb-6" variants={fadeUp}>
               Rooted in India and operating across global luxury corridors — from the Maldives to the
               Middle East, Southeast Asia to Europe — we bring rigorous industry knowledge, an extensive
               network, and an unwavering commitment to precision in every assignment.
             </motion.p>
 
             <motion.p
-              className="font-sans text-[13px] leading-relaxed"
-              style={{ color: 'rgba(198,167,105,0.7)', fontWeight: 300 }}
+              className="font-sans text-[14px] leading-relaxed"
+              style={{ color: 'rgba(198,167,105,0.72)', fontWeight: 300 }}
               variants={fadeUp}
             >
               We work across luxury, upper upscale, upscale, boutique, independent, and emerging
@@ -111,12 +111,10 @@ export default function AboutSection() {
                 className="group relative border-b border-white/[0.055] last:border-b-0 py-7 pl-6"
                 variants={fadeUp}
               >
-                {/* Animated left border */}
                 <span className="absolute left-0 top-0 bottom-0 w-px bg-white/[0.08] group-hover:bg-gold/40 transition-colors duration-500" />
 
-                {/* Small counter */}
                 <span
-                  className="absolute left-6 top-7 font-serif text-gold/18 select-none"
+                  className="absolute left-6 top-7 font-serif text-gold/15 select-none"
                   style={{ fontSize: '2.5rem', lineHeight: 1, fontWeight: 300 }}
                   aria-hidden="true"
                 >
@@ -124,17 +122,19 @@ export default function AboutSection() {
                 </span>
 
                 <div className="relative z-10 pl-10 pt-1">
-                  <h3 className="font-display text-pearl text-[1.05rem] mb-2.5 font-normal leading-snug group-hover:text-gold-light transition-colors duration-400">
+                  <h3
+                    className="font-display text-pearl text-[1.1rem] mb-3 font-normal leading-snug group-hover:text-gold-light transition-colors duration-400"
+                  >
                     {title}
                   </h3>
-                  <p className="lx-body text-[13.5px]">{body}</p>
+                  <p className="lx-body text-[15px]">{body}</p>
                 </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
 
-        {/* ── Stats bar ── */}
+        {/* Stats bar */}
         <motion.div
           className="border-t border-white/[0.055] pt-16 grid grid-cols-2 md:grid-cols-4 gap-10"
           variants={stagger}
@@ -150,7 +150,9 @@ export default function AboutSection() {
               >
                 <Counter to={to} suffix={suffix} />
               </div>
-              <div className="text-dimmer text-[10px] font-sans uppercase tracking-label">{label}</div>
+              <div className="text-dimmer font-sans uppercase" style={{ fontSize: '10.5px', letterSpacing: '0.18em' }}>
+                {label}
+              </div>
             </motion.div>
           ))}
         </motion.div>

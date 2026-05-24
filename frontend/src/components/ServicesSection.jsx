@@ -53,7 +53,7 @@ const services = [
   },
 ]
 
-export default function ServicesSection() {
+export default function ServicesSection({ navigate }) {
   const [expanded, setExpanded] = useState(null)
 
   return (
@@ -72,20 +72,21 @@ export default function ServicesSection() {
             <motion.span className="lx-label" variants={fadeUp}>Core Services</motion.span>
             <motion.h2
               className="lx-heading"
-              style={{ fontSize: 'clamp(2rem, 3.6vw, 3.2rem)' }}
+              style={{ fontSize: 'clamp(2.2rem, 4.2vw, 3.8rem)' }}
               variants={fadeUp}
             >
-              A Practice Built for<br />
+              A Practice Built for
+              <br />
               Hospitality Leadership
             </motion.h2>
           </div>
-          <motion.p className="lx-body text-[14.5px] lg:self-end lg:pt-2" variants={fadeUp}>
+          <motion.p className="lx-body text-[16px] lg:self-end lg:pt-2" variants={fadeUp}>
             No volume mandates. Every engagement is executed with discretion, rigour, and long-term
             strategic focus — from initial briefing through to successful onboarding.
           </motion.p>
         </motion.div>
 
-        {/* Accordion service list */}
+        {/* Accordion */}
         <motion.div
           className="border-t border-white/[0.055]"
           variants={stagger}
@@ -105,12 +106,11 @@ export default function ServicesSection() {
                 aria-expanded={expanded === n}
               >
                 <div className="flex items-center gap-6 md:gap-10">
-                  {/* Number */}
                   <span
                     className="font-serif flex-shrink-0 transition-colors duration-400"
                     style={{
                       fontSize: '0.95rem',
-                      color: expanded === n ? 'rgba(198,167,105,0.9)' : 'rgba(198,167,105,0.28)',
+                      color: expanded === n ? 'rgba(198,167,105,0.9)' : 'rgba(198,167,105,0.30)',
                       letterSpacing: '0.06em',
                       fontWeight: 300,
                     }}
@@ -118,18 +118,16 @@ export default function ServicesSection() {
                   >
                     {n}
                   </span>
-                  {/* Title */}
                   <span
                     className={`font-serif transition-colors duration-400 ${
                       expanded === n ? 'text-gold-light' : 'text-pearl group-hover:text-pearl/80'
                     }`}
-                    style={{ fontSize: 'clamp(1.05rem, 2vw, 1.3rem)', fontWeight: 400, letterSpacing: '-0.01em' }}
+                    style={{ fontSize: 'clamp(1.05rem, 2vw, 1.35rem)', fontWeight: 400, letterSpacing: '-0.01em' }}
                   >
                     {title}
                   </span>
                 </div>
 
-                {/* Expand icon */}
                 <motion.span
                   className="flex-shrink-0 ml-4 text-gold/50 group-hover:text-gold transition-colors duration-300"
                   animate={{ rotate: expanded === n ? 45 : 0 }}
@@ -149,26 +147,30 @@ export default function ServicesSection() {
                     className="overflow-hidden"
                   >
                     <div className="pb-8 pl-[calc(1.7rem+1.5rem)] md:pl-[calc(2.5rem+2.5rem)]">
-                      <p className="lx-body text-[14px] mb-5 max-w-2xl">{body}</p>
+                      <p className="lx-body text-[15px] mb-5 max-w-2xl">{body}</p>
                       <div className="flex flex-wrap gap-2 mb-6">
                         {tags.map(tag => (
                           <span
                             key={tag}
-                            className="text-[9px] font-sans uppercase tracking-label text-dimmer border border-white/[0.08] px-3 py-1.5"
+                            className="font-sans uppercase text-dimmer border border-white/[0.08] px-3 py-1.5"
+                            style={{ fontSize: '9.5px', letterSpacing: '0.18em' }}
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
-                      <a
-                        href="#contact"
-                        className="inline-flex items-center gap-2 text-gold text-[10px] font-sans uppercase tracking-label hover:text-gold-light transition-colors duration-300 group"
-                      >
-                        <span>Enquire about this service</span>
-                        <motion.span className="inline-block" whileHover={{ x: 3 }} transition={{ duration: 0.2 }}>
-                          <ArrowSmIcon />
-                        </motion.span>
-                      </a>
+                      {navigate && (
+                        <button
+                          onClick={() => navigate('contact')}
+                          className="inline-flex items-center gap-2 text-gold font-sans uppercase hover:text-gold-light transition-colors duration-300 group"
+                          style={{ fontSize: '10.5px', letterSpacing: '0.18em' }}
+                        >
+                          <span>Enquire about this service</span>
+                          <motion.span className="inline-block" whileHover={{ x: 3 }} transition={{ duration: 0.2 }}>
+                            <ArrowSmIcon />
+                          </motion.span>
+                        </button>
+                      )}
                     </div>
                   </motion.div>
                 )}

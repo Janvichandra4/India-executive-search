@@ -1,14 +1,12 @@
 import { motion } from 'framer-motion'
 
-const EASE = [0.16, 1, 0.3, 1]
 
 const navLinks = [
-  { label: 'About',                  href: '#about'        },
-  { label: 'Services',               href: '#services'     },
-  { label: 'Our Process',            href: '#process'      },
-  { label: 'Hospitality Sectors',    href: '#sectors'      },
-  { label: 'Testimonials',           href: '#testimonials' },
-  { label: 'Contact',                href: '#contact'      },
+  { label: 'About',        page: 'about'      },
+  { label: 'For Employers', page: 'employers' },
+  { label: 'For Candidates', page: 'candidates' },
+  { label: 'Sectors',      page: 'sectors'    },
+  { label: 'Contact',      page: 'contact'    },
 ]
 
 const serviceLinks = [
@@ -20,92 +18,101 @@ const serviceLinks = [
   'Market Intelligence',
 ]
 
-const locations = [
-  'Gurgaon', 'Mumbai', 'Bengaluru', 'Dubai',
-]
+const locations = ['Gurgaon', 'Mumbai', 'Bengaluru', 'Dubai']
 
-export default function Footer({ onNavigateOpportunities }) {
+export default function Footer({ navigate }) {
   return (
     <footer className="bg-surface-deep border-t border-white/[0.05]">
 
-      {/* Main footer body */}
+      {/* Main body */}
       <div className="lx-container py-20 md:py-24">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
 
-          {/* Col 1 — Brand */}
+          {/* Brand column */}
           <div className="lg:col-span-1">
-            <div className="flex items-baseline gap-3.5 mb-6">
-              <span className="font-serif text-gold tracking-widest" style={{ fontSize: '1rem', letterSpacing: '0.28em' }}>IES</span>
-              <span className="text-dimmer text-[9px] font-sans uppercase tracking-widest border-l border-white/[0.07] pl-3">
+            <button onClick={() => navigate('home')} className="flex items-baseline gap-3.5 mb-6 outline-none group">
+              <span
+                className="font-serif text-gold group-hover:text-gold-light transition-colors duration-400"
+                style={{ fontSize: '1.1rem', letterSpacing: '0.28em' }}
+              >
+                IES
+              </span>
+              <span className="text-dimmer border-l border-white/[0.07] pl-3.5 font-sans uppercase"
+                style={{ fontSize: '9.5px', letterSpacing: '0.2em' }}>
                 India Executive Search
               </span>
-            </div>
-            <p className="lx-body text-[13px] mb-6 max-w-[240px]">
+            </button>
+            <p className="lx-body text-[14px] mb-6 max-w-[240px]">
               Premium hospitality executive search and leadership advisory. India, Middle East, and Asia.
             </p>
-            {/* Locations */}
             <div className="flex flex-wrap gap-x-3 gap-y-1.5">
               {locations.map((city, i) => (
-                <span key={city} className="text-dimmer text-[10px] font-sans">
+                <span key={city} className="text-dimmer font-sans" style={{ fontSize: '11px' }}>
                   {city}{i < locations.length - 1 && <span className="ml-3 text-dimmest">·</span>}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Col 2 — Navigation */}
+          {/* Navigation */}
           <div>
-            <p className="text-dimmer text-[9px] font-sans uppercase tracking-label mb-6">Navigation</p>
+            <p className="text-dimmer font-sans uppercase mb-6" style={{ fontSize: '9.5px', letterSpacing: '0.2em' }}>Navigation</p>
             <nav className="space-y-3.5" aria-label="Footer navigation">
-              {navLinks.map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  className="block text-dim text-[13px] font-sans font-light hover:text-gold transition-colors duration-300"
+              {navLinks.map(({ label, page }) => (
+                <button
+                  key={page}
+                  onClick={() => navigate(page)}
+                  className="block text-dim font-sans font-light hover:text-gold transition-colors duration-300 text-left outline-none"
+                  style={{ fontSize: '13.5px' }}
                 >
                   {label}
-                </a>
+                </button>
               ))}
-              <button
-                onClick={onNavigateOpportunities}
-                className="block text-dim text-[13px] font-sans font-light hover:text-gold transition-colors duration-300 text-left"
-              >
-                Leadership Opportunities
-              </button>
             </nav>
           </div>
 
-          {/* Col 3 — Services */}
+          {/* Services */}
           <div>
-            <p className="text-dimmer text-[9px] font-sans uppercase tracking-label mb-6">Our Services</p>
+            <p className="text-dimmer font-sans uppercase mb-6" style={{ fontSize: '9.5px', letterSpacing: '0.2em' }}>Our Services</p>
             <ul className="space-y-3.5">
               {serviceLinks.map(s => (
                 <li key={s}>
-                  <a href="#services" className="text-dim text-[13px] font-sans font-light hover:text-gold transition-colors duration-300">
+                  <button
+                    onClick={() => navigate('employers')}
+                    className="block text-dim font-sans font-light hover:text-gold transition-colors duration-300 text-left outline-none"
+                    style={{ fontSize: '13.5px' }}
+                  >
                     {s}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Col 4 — Contact */}
+          {/* Contact */}
           <div>
-            <p className="text-dimmer text-[9px] font-sans uppercase tracking-label mb-6">Reach Us</p>
+            <p className="text-dimmer font-sans uppercase mb-6" style={{ fontSize: '9.5px', letterSpacing: '0.2em' }}>Reach Us</p>
             <div className="space-y-4">
-              <a href="mailto:info@indiaexecutivesearch.com"
-                className="block text-dim text-[13px] font-sans font-light hover:text-gold transition-colors duration-300">
+              <a
+                href="mailto:info@indiaexecutivesearch.com"
+                className="block text-dim font-sans font-light hover:text-gold transition-colors duration-300"
+                style={{ fontSize: '13.5px' }}
+              >
                 info@indiaexecutivesearch.com
               </a>
-              <a href="tel:+919560454774"
-                className="block text-dim text-[13px] font-sans font-light hover:text-gold transition-colors duration-300">
+              <a
+                href="tel:+919560454774"
+                className="block text-dim font-sans font-light hover:text-gold transition-colors duration-300"
+                style={{ fontSize: '13.5px' }}
+              >
                 +91 9560 454 774
               </a>
               <motion.a
-                href="https://www.linkedin.com/in/harish-chandra"
+                href="https://www.linkedin.com/in/harishchandra/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 text-dim text-[13px] font-sans font-light hover:text-gold transition-colors duration-300 mt-2"
+                className="inline-flex items-center gap-2.5 text-dim font-sans font-light hover:text-gold transition-colors duration-300 mt-2"
+                style={{ fontSize: '13.5px' }}
                 whileHover={{ x: 2 }}
                 transition={{ duration: 0.2 }}
               >
@@ -123,7 +130,7 @@ export default function Footer({ onNavigateOpportunities }) {
       {/* SEO strip */}
       <div className="border-t border-white/[0.04]">
         <div className="lx-container py-5">
-          <p className="text-dimmest text-[11px] font-sans leading-relaxed">
+          <p className="text-dimmest font-sans leading-relaxed" style={{ fontSize: '11px' }}>
             Hospitality Executive Search India &nbsp;·&nbsp; Hotel Leadership Hiring &nbsp;·&nbsp;
             Hotel Recruitment Consultants &nbsp;·&nbsp; Luxury Hotel Recruitment India &nbsp;·&nbsp;
             Hospitality Talent Advisory &nbsp;·&nbsp; Hotel General Manager Recruitment &nbsp;·&nbsp;
@@ -132,13 +139,13 @@ export default function Footer({ onNavigateOpportunities }) {
         </div>
       </div>
 
-      {/* Copyright bar */}
+      {/* Copyright */}
       <div className="border-t border-white/[0.04]">
         <div className="lx-container py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-dimmer text-[11px] font-sans">
+          <p className="text-dimmer font-sans" style={{ fontSize: '11px' }}>
             © {new Date().getFullYear()} India Executive Search. All rights reserved.
           </p>
-          <p className="text-dimmer text-[11px] font-sans">
+          <p className="text-dimmer font-sans" style={{ fontSize: '11px' }}>
             Hospitality Executive Search &nbsp;·&nbsp; India &amp; Global
           </p>
         </div>

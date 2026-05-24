@@ -1,54 +1,50 @@
 import { useState, useEffect } from 'react'
-import Navbar                    from './components/Navbar'
-import HeroSection               from './components/HeroSection'
-import AboutSection              from './components/AboutSection'
-import ExecutivePlacementsSection from './components/ExecutivePlacementsSection'
-import ServicesSection           from './components/ServicesSection'
-import NoVolumeSection           from './components/NoVolumeSection'
-import SectorsSection            from './components/SectorsSection'
-import WhyUsSection              from './components/WhyUsSection'
-import FounderSection            from './components/FounderSection'
-import ProcessSection            from './components/ProcessSection'
-import TestimonialsSection       from './components/TestimonialsSection'
-import ContactSection            from './components/ContactSection'
-import Footer                    from './components/Footer'
-import LeadershipOpportunitiesPage from './pages/LeadershipOpportunitiesPage'
+import Navbar        from './components/Navbar'
+import Footer        from './components/Footer'
+import HomePage      from './pages/HomePage'
+import AboutPage     from './pages/AboutPage'
+import EmployersPage from './pages/EmployersPage'
+import CandidatesPage from './pages/CandidatesPage'
+import SectorsPage   from './pages/SectorsPage'
+import ContactPage   from './pages/ContactPage'
+
+const PAGE_TITLES = {
+  home:       'India Executive Search — Hospitality Leadership Advisory',
+  about:      'About — India Executive Search',
+  employers:  'For Employers — India Executive Search',
+  candidates: 'Leadership Opportunities — India Executive Search',
+  sectors:    'Sectors — India Executive Search',
+  contact:    'Contact — India Executive Search',
+}
 
 export default function App() {
   const [page, setPage] = useState('home')
 
-  const goOpportunities = () => { setPage('opportunities'); window.scrollTo({ top: 0, behavior: 'smooth' }) }
-  const goHome          = () => { setPage('home');          window.scrollTo({ top: 0, behavior: 'smooth' }) }
+  const navigate = (p) => {
+    setPage(p)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   useEffect(() => {
-    if (page === 'opportunities') {
-      document.title = 'Leadership Opportunities — India Executive Search'
-    } else {
-      document.title = 'India Executive Search — Hospitality Leadership Advisory'
-    }
+    document.title = PAGE_TITLES[page] ?? PAGE_TITLES.home
   }, [page])
 
-  if (page === 'opportunities') {
-    return <LeadershipOpportunitiesPage onBack={goHome} />
+  const renderPage = () => {
+    switch (page) {
+      case 'about':      return <AboutPage      navigate={navigate} />
+      case 'employers':  return <EmployersPage  navigate={navigate} />
+      case 'candidates': return <CandidatesPage navigate={navigate} />
+      case 'sectors':    return <SectorsPage    navigate={navigate} />
+      case 'contact':    return <ContactPage    navigate={navigate} />
+      default:           return <HomePage       navigate={navigate} />
+    }
   }
 
   return (
     <div className="bg-surface font-sans text-pearl overflow-x-hidden">
-      <Navbar onNavigateOpportunities={goOpportunities} />
-      <main>
-        <HeroSection             onNavigateOpportunities={goOpportunities} />
-        <AboutSection />
-        <ExecutivePlacementsSection />
-        <ServicesSection />
-        <NoVolumeSection />
-        <SectorsSection />
-        <WhyUsSection />
-        <FounderSection />
-        <ProcessSection />
-        <TestimonialsSection />
-        <ContactSection />
-      </main>
-      <Footer onNavigateOpportunities={goOpportunities} />
+      <Navbar currentPage={page} navigate={navigate} />
+      <main>{renderPage()}</main>
+      <Footer navigate={navigate} currentPage={page} />
     </div>
   )
 }
