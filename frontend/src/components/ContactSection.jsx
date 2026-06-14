@@ -80,8 +80,8 @@ export default function ContactSection() {
                 <div>
                   <p className="text-dimmer text-[9px] font-sans uppercase tracking-label mb-1.5">{label}</p>
                   {href
-                    ? <a href={href} className="font-sans font-light text-[13.5px] text-pearl/75 hover:text-gold transition-colors duration-300">{value}</a>
-                    : <p className="font-sans font-light text-[13.5px] text-pearl/75">{value}</p>
+                    ? <a href={href} className="font-sans font-light text-[13.5px] text-pearl/92 hover:text-gold transition-colors duration-300">{value}</a>
+                    : <p className="font-sans font-light text-[13.5px] text-pearl/92">{value}</p>
                   }
                 </div>
               </motion.div>
@@ -91,10 +91,10 @@ export default function ContactSection() {
             <motion.div className="pt-8" variants={fadeUp}>
               <p className="text-dimmer text-[9px] font-sans uppercase tracking-label mb-4">Connect</p>
               <motion.a
-                href="https://www.linkedin.com/in/harish-chandra"
+                href="https://www.linkedin.com/in/harishchandra/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-dim hover:text-gold text-[13px] font-sans font-light transition-colors duration-300 group"
+                className="inline-flex items-center gap-3 text-pearl/75 hover:text-gold text-[13px] font-sans font-light transition-colors duration-300 group"
                 whileHover={{ x: 3 }}
                 transition={{ duration: 0.2 }}
               >

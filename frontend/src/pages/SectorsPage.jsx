@@ -4,7 +4,7 @@ import { PageHero, PageCTA } from './AboutPage'
 const EASE = [0.16, 1, 0.3, 1]
 
 const PAGE_IMG =
-  'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1920&q=80'
+  'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=1920&q=80'
 
 const sectors = [
   {
@@ -118,7 +118,7 @@ export default function SectorsPage({ navigate }) {
                 <span className="absolute top-0 left-0 h-px bg-gold/50 transition-all duration-500 w-0 group-hover:w-full" />
 
                 <span
-                  className="block font-serif text-gold/20 group-hover:text-gold/45 transition-colors duration-400 mb-5 leading-none select-none"
+                  className="block font-serif text-gold/65 group-hover:text-gold transition-colors duration-400 mb-5 leading-none select-none"
                   style={{ fontSize: '1.9rem', fontWeight: 300 }}
                   aria-hidden="true"
                 >
@@ -126,7 +126,7 @@ export default function SectorsPage({ navigate }) {
                 </span>
 
                 <h3
-                  className="font-display text-pearl/85 group-hover:text-pearl transition-colors duration-400 leading-snug mb-3"
+                  className="font-display text-pearl group-hover:text-ivory transition-colors duration-400 leading-snug mb-3"
                   style={{ fontSize: '1.08rem', fontWeight: 400 }}
                 >
                   {title}
@@ -138,7 +138,7 @@ export default function SectorsPage({ navigate }) {
                   {tags.map(t => (
                     <span
                       key={t}
-                      className="text-[9.5px] font-sans uppercase tracking-label text-dimmer border border-white/[0.07] px-2.5 py-1.5"
+                      className="text-[9.5px] font-sans uppercase tracking-label text-dim border border-white/[0.14] px-2.5 py-1.5"
                     >
                       {t}
                     </span>
@@ -199,7 +199,7 @@ export default function SectorsPage({ navigate }) {
                   <p className="lx-label mb-4 text-[9.5px]">{label}</p>
                   <div className="flex flex-wrap gap-x-4 gap-y-1">
                     {roles.map((role, j) => (
-                      <span key={role} className="font-serif text-dim group-hover:text-pearl/80 transition-colors duration-400" style={{ fontSize: '1rem', fontWeight: 300 }}>
+                      <span key={role} className="font-serif text-pearl/80 group-hover:text-pearl transition-colors duration-400" style={{ fontSize: '1rem', fontWeight: 300 }}>
                         {role}
                         {j < roles.length - 1 && (
                           <span className="text-gold/30 ml-4 not-italic" aria-hidden="true">·</span>

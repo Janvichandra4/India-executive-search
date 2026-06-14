@@ -54,7 +54,7 @@ function CredentialStrip() {
               >
                 {value}
               </p>
-              <p className="font-sans text-dimmer uppercase" style={{ fontSize: '10.5px', letterSpacing: '0.18em' }}>
+              <p className="font-sans uppercase" style={{ fontSize: '10.5px', letterSpacing: '0.18em', color: 'rgba(245,240,232,0.55)' }}>
                 {label}
               </p>
             </motion.div>

@@ -114,7 +114,7 @@ export default function AboutSection() {
                 <span className="absolute left-0 top-0 bottom-0 w-px bg-white/[0.08] group-hover:bg-gold/40 transition-colors duration-500" />
 
                 <span
-                  className="absolute left-6 top-7 font-serif text-gold/15 select-none"
+                  className="absolute left-6 top-7 font-serif text-gold/25 select-none"
                   style={{ fontSize: '2.5rem', lineHeight: 1, fontWeight: 300 }}
                   aria-hidden="true"
                 >

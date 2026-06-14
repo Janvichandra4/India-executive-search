@@ -101,40 +101,40 @@ export default function ServicesSection({ navigate }) {
               variants={fadeUp}
             >
               <button
-                className="w-full flex items-center justify-between py-7 group text-left outline-none"
+                className="w-full flex items-center py-7 group text-left outline-none gap-5 md:gap-8"
                 onClick={() => setExpanded(expanded === n ? null : n)}
                 aria-expanded={expanded === n}
               >
-                <div className="flex items-center gap-6 md:gap-10">
-                  <span
-                    className="font-serif flex-shrink-0 transition-colors duration-400"
-                    style={{
-                      fontSize: '0.95rem',
-                      color: expanded === n ? 'rgba(198,167,105,0.9)' : 'rgba(198,167,105,0.30)',
-                      letterSpacing: '0.06em',
-                      fontWeight: 300,
-                    }}
-                    aria-hidden="true"
-                  >
-                    {n}
-                  </span>
-                  <span
-                    className={`font-serif transition-colors duration-400 ${
-                      expanded === n ? 'text-gold-light' : 'text-pearl group-hover:text-pearl/80'
-                    }`}
-                    style={{ fontSize: 'clamp(1.05rem, 2vw, 1.35rem)', fontWeight: 400, letterSpacing: '-0.01em' }}
-                  >
-                    {title}
-                  </span>
-                </div>
+                <span
+                  className="font-serif flex-shrink-0 transition-colors duration-300 min-w-[2.2rem]"
+                  style={{
+                    fontSize: '1.3rem',
+                    color: expanded === n ? '#C6A769' : 'rgba(198,167,105,0.72)',
+                    letterSpacing: '0.06em',
+                    fontWeight: 300,
+                  }}
+                  aria-hidden="true"
+                >
+                  {n}
+                </span>
 
                 <motion.span
-                  className="flex-shrink-0 ml-4 text-gold/50 group-hover:text-gold transition-colors duration-300"
+                  className="flex-shrink-0 text-gold/65 group-hover:text-gold transition-colors duration-300"
                   animate={{ rotate: expanded === n ? 45 : 0 }}
                   transition={{ duration: 0.3, ease: EASE }}
+                  aria-hidden="true"
                 >
                   <PlusIcon />
                 </motion.span>
+
+                <span
+                  className={`font-serif transition-colors duration-400 flex-1 ${
+                    expanded === n ? 'text-gold-light' : 'text-pearl group-hover:text-pearl'
+                  }`}
+                  style={{ fontSize: 'clamp(1.05rem, 2vw, 1.35rem)', fontWeight: 400, letterSpacing: '-0.01em' }}
+                >
+                  {title}
+                </span>
               </button>
 
               <AnimatePresence initial={false}>
@@ -152,7 +152,7 @@ export default function ServicesSection({ navigate }) {
                         {tags.map(tag => (
                           <span
                             key={tag}
-                            className="font-sans uppercase text-dimmer border border-white/[0.08] px-3 py-1.5"
+                            className="font-sans uppercase text-dim border border-white/[0.14] px-3 py-1.5"
                             style={{ fontSize: '9.5px', letterSpacing: '0.18em' }}
                           >
                             {tag}

@@ -37,8 +37,8 @@ export default function Footer({ navigate }) {
               >
                 IES
               </span>
-              <span className="text-dimmer border-l border-white/[0.07] pl-3.5 font-sans uppercase"
-                style={{ fontSize: '9.5px', letterSpacing: '0.2em' }}>
+              <span className="border-l border-white/[0.10] pl-3.5 font-sans uppercase"
+                style={{ fontSize: '11px', letterSpacing: '0.2em', color: '#C6A769' }}>
                 India Executive Search
               </span>
             </button>
@@ -62,7 +62,7 @@ export default function Footer({ navigate }) {
                 <button
                   key={page}
                   onClick={() => navigate(page)}
-                  className="block text-dim font-sans font-light hover:text-gold transition-colors duration-300 text-left outline-none"
+                  className="block text-pearl/68 font-sans font-light hover:text-gold transition-colors duration-300 text-left outline-none"
                   style={{ fontSize: '13.5px' }}
                 >
                   {label}
@@ -79,7 +79,7 @@ export default function Footer({ navigate }) {
                 <li key={s}>
                   <button
                     onClick={() => navigate('employers')}
-                    className="block text-dim font-sans font-light hover:text-gold transition-colors duration-300 text-left outline-none"
+                    className="block text-pearl/68 font-sans font-light hover:text-gold transition-colors duration-300 text-left outline-none"
                     style={{ fontSize: '13.5px' }}
                   >
                     {s}
@@ -95,14 +95,14 @@ export default function Footer({ navigate }) {
             <div className="space-y-4">
               <a
                 href="mailto:info@indiaexecutivesearch.com"
-                className="block text-dim font-sans font-light hover:text-gold transition-colors duration-300"
+                className="block text-pearl/80 font-sans font-light hover:text-gold transition-colors duration-300"
                 style={{ fontSize: '13.5px' }}
               >
                 info@indiaexecutivesearch.com
               </a>
               <a
                 href="tel:+919560454774"
-                className="block text-dim font-sans font-light hover:text-gold transition-colors duration-300"
+                className="block text-pearl/80 font-sans font-light hover:text-gold transition-colors duration-300"
                 style={{ fontSize: '13.5px' }}
               >
                 +91 9560 454 774
@@ -111,7 +111,7 @@ export default function Footer({ navigate }) {
                 href="https://www.linkedin.com/in/harishchandra/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 text-dim font-sans font-light hover:text-gold transition-colors duration-300 mt-2"
+                className="inline-flex items-center gap-2.5 text-pearl/68 font-sans font-light hover:text-gold transition-colors duration-300 mt-2"
                 style={{ fontSize: '13.5px' }}
                 whileHover={{ x: 2 }}
                 transition={{ duration: 0.2 }}

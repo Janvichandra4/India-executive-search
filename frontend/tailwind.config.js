@@ -12,9 +12,9 @@ export default {
         },
         pearl:   '#F5F0E8',
         ivory:   '#FBF8F2',
-        dim:     '#a0a0a0',
-        dimmer:  '#6c6c6c',
-        dimmest: '#3e3e3e',
+        dim:     '#b8b8b8',
+        dimmer:  '#909090',
+        dimmest: '#4e4e4e',
         surface: {
           DEFAULT:  '#080706',
           card:     '#0f0e0c',

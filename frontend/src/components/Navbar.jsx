@@ -53,8 +53,8 @@ export default function Navbar({ currentPage, navigate }) {
             </span>
             <span className="hidden sm:flex items-center border-l border-white/[0.1] pl-4">
               <span
-                className="font-sans uppercase text-dim group-hover:text-pearl/60 transition-colors duration-500"
-                style={{ fontSize: '10px', letterSpacing: '0.22em', lineHeight: 1, fontWeight: 400 }}
+                className="font-sans uppercase text-pearl/70 group-hover:text-pearl/90 transition-colors duration-500"
+                style={{ fontSize: '11px', letterSpacing: '0.22em', lineHeight: 1, fontWeight: 400 }}
               >
                 India Executive Search
               </span>

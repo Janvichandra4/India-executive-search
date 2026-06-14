@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 const EASE = [0.16, 1, 0.3, 1]
 
 const HERO_IMG =
-  'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80'
+  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=1920&q=80'
 
 const stagger = {
   hidden: {},
@@ -83,7 +83,12 @@ export default function HeroSection({ navigate }) {
           {/* Eyebrow */}
           <motion.div className="flex items-center justify-center gap-5 mb-10" variants={up}>
             <span className="block w-10 h-px bg-gold/30 flex-shrink-0" aria-hidden="true" />
-            <span className="lx-label mb-0">India Executive Search</span>
+            <span
+              className="font-sans uppercase text-gold tracking-wide mb-0"
+              style={{ fontSize: '13px', letterSpacing: '0.28em', fontWeight: 500 }}
+            >
+              India Executive Search
+            </span>
             <span className="block w-10 h-px bg-gold/30 flex-shrink-0" aria-hidden="true" />
           </motion.div>
 

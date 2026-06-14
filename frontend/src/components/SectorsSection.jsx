@@ -77,7 +77,7 @@ export default function SectorsSection() {
 
               {/* Number */}
               <span
-                className="block font-serif text-gold/20 group-hover:text-gold/40 transition-colors duration-400 mb-5 leading-none select-none"
+                className="block font-serif text-gold/65 group-hover:text-gold transition-colors duration-400 mb-5 leading-none select-none"
                 style={{ fontSize: '1.8rem', fontWeight: 300 }}
                 aria-hidden="true"
               >
@@ -86,7 +86,7 @@ export default function SectorsSection() {
 
               {/* Title */}
               <h3
-                className="font-display text-pearl/85 group-hover:text-pearl transition-colors duration-400 leading-snug mb-3"
+                className="font-display text-pearl group-hover:text-ivory transition-colors duration-400 leading-snug mb-3"
                 style={{ fontSize: '1.05rem', fontWeight: 400 }}
               >
                 {title}

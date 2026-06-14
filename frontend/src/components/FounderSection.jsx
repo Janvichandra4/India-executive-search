@@ -69,7 +69,7 @@ function FounderCard({ founder, index }) {
         <p className="text-dimmer font-sans uppercase" style={{ fontSize: '10px', letterSpacing: '0.2em' }}>
           {title}
         </p>
-        <p className="text-dimmer font-sans uppercase mt-1 opacity-55" style={{ fontSize: '10px', letterSpacing: '0.2em' }}>
+        <p className="font-sans uppercase mt-1" style={{ fontSize: '11px', letterSpacing: '0.2em', color: 'rgba(198,167,105,0.65)' }}>
           India Executive Search
         </p>
       </div>
@@ -146,7 +146,7 @@ function FounderCard({ founder, index }) {
         >
           {name}
         </p>
-        <p className="text-dimmer font-sans uppercase" style={{ fontSize: '10px', letterSpacing: '0.2em' }}>
+        <p className="font-sans uppercase" style={{ fontSize: '10.5px', letterSpacing: '0.2em', color: 'rgba(198,167,105,0.60)' }}>
           {title} — India Executive Search
         </p>
       </motion.div>

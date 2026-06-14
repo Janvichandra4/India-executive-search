@@ -5,7 +5,7 @@ import { PageHero, PageCTA } from './AboutPage'
 const EASE = [0.16, 1, 0.3, 1]
 
 const PAGE_IMG =
-  'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1920&q=80'
+  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1920&q=80'
 
 const candidateSteps = [
   {
@@ -242,8 +242,8 @@ export default function CandidatesPage({ navigate }) {
                       transition={{ delay: i * 0.07, duration: 0.8, ease: EASE }}
                     >
                       <span
-                        className="font-serif text-gold/35 group-hover:text-gold/65 transition-colors duration-400 flex-shrink-0 mt-0.5"
-                        style={{ fontSize: '0.9rem', letterSpacing: '0.06em', fontWeight: 300 }}
+                        className="font-serif text-gold/68 group-hover:text-gold transition-colors duration-400 flex-shrink-0 mt-0.5"
+                        style={{ fontSize: '1.3rem', letterSpacing: '0.06em', fontWeight: 300 }}
                         aria-hidden="true"
                       >
                         {n}
@@ -328,7 +328,7 @@ function MandateCard({ m, onExpress }) {
           {m.tags.map(t => (
             <span
               key={t}
-              className="font-sans uppercase text-dimmer border border-white/[0.07] px-2.5 py-1.5"
+              className="font-sans uppercase text-dim border border-white/[0.14] px-2.5 py-1.5"
               style={{ fontSize: '9px', letterSpacing: '0.18em' }}
             >
               {t}

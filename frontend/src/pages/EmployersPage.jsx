@@ -5,10 +5,10 @@ import { PageHero, PageCTA } from './AboutPage'
 const EASE = [0.16, 1, 0.3, 1]
 
 const PAGE_IMG =
-  'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1920&q=80'
+  'https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1920&q=80'
 
 const SPLIT_IMG =
-  'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80'
+  'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=900&q=80'
 
 const differentiators = [
   {
@@ -98,7 +98,10 @@ export default function EmployersPage({ navigate }) {
               >
                 Why Hospitality Brands
                 <br />
-                Choose India Executive Search
+                Choose{' '}
+                <span style={{ color: 'rgba(245,240,232,1)', fontStyle: 'normal' }}>
+                  India Executive Search
+                </span>
               </h2>
             </motion.div>
             <motion.p
@@ -125,8 +128,8 @@ export default function EmployersPage({ navigate }) {
                 transition={{ delay: (i % 2) * 0.1, duration: 0.85, ease: EASE }}
               >
                 <span
-                  className="font-serif text-gold/22 group-hover:text-gold/50 transition-colors duration-400 flex-shrink-0 mt-0.5"
-                  style={{ fontSize: '0.9rem', letterSpacing: '0.06em', fontWeight: 300 }}
+                  className="font-serif text-gold/68 group-hover:text-gold transition-colors duration-400 flex-shrink-0 mt-0.5"
+                  style={{ fontSize: '1.3rem', letterSpacing: '0.06em', fontWeight: 300 }}
                   aria-hidden="true"
                 >
                   {n}
@@ -203,8 +206,8 @@ export default function EmployersPage({ navigate }) {
                 transition={{ delay: i * 0.07, duration: 0.85, ease: EASE }}
               >
                 <span
-                  className="font-serif text-gold/35 group-hover:text-gold/65 transition-colors duration-400 flex-shrink-0 mt-1"
-                  style={{ fontSize: '1.1rem', letterSpacing: '0.06em', fontWeight: 300 }}
+                  className="font-serif text-gold/68 group-hover:text-gold transition-colors duration-400 flex-shrink-0 mt-1"
+                  style={{ fontSize: '1.5rem', letterSpacing: '0.06em', fontWeight: 300 }}
                   aria-hidden="true"
                 >
                   {n}

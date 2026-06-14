@@ -60,7 +60,8 @@ export default function WhyUsSection() {
             variants={fadeUp}
           >
             Why Hospitality Brands<br />
-            Choose India Executive Search
+            Choose{' '}
+            <span style={{ color: 'rgba(245,240,232,1)' }}>India Executive Search</span>
           </motion.h2>
           <motion.p className="lx-body text-[14.5px]" variants={fadeUp}>
             A practice designed around the demands of leadership-level mandates — not operational
@@ -84,8 +85,8 @@ export default function WhyUsSection() {
             >
               {/* Number */}
               <span
-                className="font-serif text-gold/22 group-hover:text-gold/50 transition-colors duration-400 flex-shrink-0 mt-0.5"
-                style={{ fontSize: '0.85rem', letterSpacing: '0.06em', fontWeight: 300 }}
+                className="font-serif text-gold/68 group-hover:text-gold transition-colors duration-300 flex-shrink-0 mt-0.5"
+                style={{ fontSize: '1.3rem', letterSpacing: '0.06em', fontWeight: 300 }}
                 aria-hidden="true"
               >
                 {n}

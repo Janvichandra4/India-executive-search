@@ -122,7 +122,7 @@ function MandateCard({ m, onExpress }) {
           {m.tags.map(t => (
             <span
               key={t}
-              className="text-[8.5px] font-sans uppercase tracking-label text-dimmer border border-white/[0.07] px-2.5 py-1.5"
+              className="text-[8.5px] font-sans uppercase tracking-label text-dim border border-white/[0.14] px-2.5 py-1.5"
             >
               {t}
             </span>
@@ -216,7 +216,7 @@ export default function LeadershipOpportunitiesPage({ onBack }) {
           </button>
           <div className="flex items-baseline gap-3.5">
             <span className="font-serif text-gold tracking-widest" style={{ fontSize: '1rem', letterSpacing: '0.28em' }}>IES</span>
-            <span className="hidden sm:block text-dimmer text-[9px] font-sans uppercase tracking-widest border-l border-white/[0.08] pl-3.5">
+            <span className="hidden sm:block text-[10px] font-sans uppercase tracking-widest border-l border-white/[0.08] pl-3.5" style={{ color: 'rgba(198,167,105,0.65)' }}>
               India Executive Search
             </span>
           </div>

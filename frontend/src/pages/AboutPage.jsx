@@ -4,7 +4,7 @@ import FounderSection from '../components/FounderSection'
 const EASE = [0.16, 1, 0.3, 1]
 
 const PAGE_IMG =
-  'https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1920&q=80'
+  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1920&q=80'
 
 const pillars = [
   {
@@ -103,7 +103,7 @@ export default function AboutPage({ navigate }) {
                 transition={{ delay: i * 0.1, duration: 0.85, ease: EASE }}
               >
                 <span
-                  className="block font-serif text-gold/22 group-hover:text-gold/50 transition-colors duration-400 mb-5 select-none leading-none"
+                  className="block font-serif text-gold/68 group-hover:text-gold transition-colors duration-400 mb-5 select-none leading-none"
                   style={{ fontSize: '1.7rem', fontWeight: 300 }}
                   aria-hidden="true"
                 >
@@ -141,7 +141,7 @@ export default function AboutPage({ navigate }) {
                 >
                   {value}
                 </p>
-                <p className="font-sans text-dimmer uppercase" style={{ fontSize: '10.5px', letterSpacing: '0.18em' }}>
+                <p className="font-sans uppercase" style={{ fontSize: '10.5px', letterSpacing: '0.18em', color: 'rgba(245,240,232,0.55)' }}>
                   {label}
                 </p>
               </motion.div>

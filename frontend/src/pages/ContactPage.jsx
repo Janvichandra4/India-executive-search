@@ -70,10 +70,30 @@ export default function ContactPage() {
     <>
       {/* Page header */}
       <section
-        className="flex items-end overflow-hidden border-b border-white/[0.055]"
-        style={{ minHeight: '38vh', paddingTop: '88px', backgroundColor: '#060504' }}
+        className="relative flex items-end overflow-hidden border-b border-white/[0.055]"
+        style={{ minHeight: '52vh', paddingTop: '88px' }}
       >
-        <div className="lx-container pb-14 md:pb-20">
+        {/* Background image */}
+        <div className="absolute inset-0 bg-surface-deep" />
+        <div className="absolute inset-0 overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1920&q=80"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              'linear-gradient(to top, rgba(6,5,4,0.96) 0%, rgba(6,5,4,0.65) 45%, rgba(6,5,4,0.45) 100%)',
+          }}
+        />
+        <div className="absolute inset-0 grain opacity-35 pointer-events-none" />
+
+        <div className="relative z-10 lx-container pb-14 md:pb-20">
           <motion.span
             className="lx-label"
             initial={{ opacity: 0, y: 20 }}
@@ -133,8 +153,8 @@ export default function ContactPage() {
                       {label}
                     </p>
                     {href
-                      ? <a href={href} className="font-sans font-light text-pearl/75 hover:text-gold transition-colors duration-300" style={{ fontSize: '14px' }}>{value}</a>
-                      : <p className="font-sans font-light text-pearl/75" style={{ fontSize: '14px' }}>{value}</p>
+                      ? <a href={href} className="font-sans font-light text-pearl/90 hover:text-gold transition-colors duration-300" style={{ fontSize: '14px' }}>{value}</a>
+                      : <p className="font-sans font-light text-pearl/90" style={{ fontSize: '14px' }}>{value}</p>
                     }
                   </div>
                 </motion.div>
@@ -148,22 +168,40 @@ export default function ContactPage() {
                 <p className="font-sans uppercase text-dimmer mb-4" style={{ fontSize: '10px', letterSpacing: '0.2em' }}>
                   Connect
                 </p>
-                <motion.a
-                  href="https://www.linkedin.com/in/harishchandra/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-dim hover:text-gold font-sans font-light transition-colors duration-300 group"
-                  style={{ fontSize: '14px' }}
-                  whileHover={{ x: 3 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <LinkedInIcon />
-                  LinkedIn — Harish Chandra
-                  <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
-                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <path d="M1 8l7-7M8 1H3M8 1v5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
-                  </svg>
-                </motion.a>
+                <div className="flex flex-col gap-4">
+                  <motion.a
+                    href="https://www.linkedin.com/in/harishchandra/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 text-pearl/75 hover:text-gold font-sans font-light transition-colors duration-300 group"
+                    style={{ fontSize: '14px' }}
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <LinkedInIcon />
+                    LinkedIn — Harish Chandra
+                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <path d="M1 8l7-7M8 1H3M8 1v5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+                    </svg>
+                  </motion.a>
+                  <motion.a
+                    href="https://www.linkedin.com/in/jaikiran-ahluwalia-a7095626/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-3 text-pearl/75 hover:text-gold font-sans font-light transition-colors duration-300 group"
+                    style={{ fontSize: '14px' }}
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <LinkedInIcon />
+                    LinkedIn — Jaikiran Ahluwalia
+                    <svg width="9" height="9" viewBox="0 0 9 9" fill="none"
+                      className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <path d="M1 8l7-7M8 1H3M8 1v5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" />
+                    </svg>
+                  </motion.a>
+                </div>
               </motion.div>
             </motion.div>
 
